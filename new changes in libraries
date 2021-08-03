@@ -10,3 +10,26 @@ is now
 
 from sklearn.impute import SimpleImputer
 imputer = SimpleImputer(missing_values=np.nan, strategy='mean')
+
+
+from sklearn.preprocessing import LabelEncoder, OneHotEncoder
+labelencoder_X_1 = LabelEncoder()
+X[:, 1] = labelencoder_X_1.fit_transform(X[:, 1])
+labelencoder_X_2 = LabelEncoder()
+
+X[:, 2] = labelencoder_X_2.fit_transform(X[:, 2])
+onehotencoder = OneHotEncoder(categorical_features = [1])
+X = onehotencoder.fit_transform(X).toarray()
+
+is now
+
+from sklearn.preprocessing import LabelEncoder, OneHotEncoder
+from sklearn.compose import ColumnTransformer
+
+# Country column
+ct = ColumnTransformer([("Country", OneHotEncoder(), [1])], remainder = 'passthrough')
+X = ct.fit_transform(X)
+
+# Male/Female
+labelencoder_X = LabelEncoder()
+X[:, 2] = labelencoder_X.fit_transform(X[:, 2])
