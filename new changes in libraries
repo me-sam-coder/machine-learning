@@ -3,3 +3,10 @@ from sklearn.cross_validation import train_test_split
 is now
 
 from sklearn.model_selection import train_test_split
+
+from sklearn.preprocessing import Imputer
+
+is now
+
+from sklearn.impute import SimpleImputer
+imputer = SimpleImputer(missing_values=np.nan, strategy='mean')
