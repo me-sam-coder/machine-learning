@@ -1,0 +1,13 @@
+//using stadard scaler
+# Feature Scaling
+from sklearn.preprocessing import StandardScaler
+sc = StandardScaler()
+X_train = sc.fit_transform(X_train)
+X_test = sc.transform(X_test)
+
+//using minmaxscaler
+# Feature Scaling
+from sklearn.preprocessing import MinMaxScaler
+sc = MinMaxScaler()
+X_train = sc.fit_transform(X_train)
+X_test = sc.transform(X_test)
