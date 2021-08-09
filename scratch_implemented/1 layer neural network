@@ -1,0 +1,50 @@
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.special import expit
+
+X = np.array([[0,1,0],
+              [0,0,1],
+              [1,0,0],
+              [1,1,0],
+              [1,1,1],
+              [0,1,1],
+              [0,1,0]])
+y = np.array([[1,
+               0,
+               0,
+               1,
+               1,
+               0,
+               1]])
+y = y.reshape(7,1)
+X = X.T
+y = y.T
+print(X)
+print(y)
+
+W = np.array([[0.51242756], [0.55639698], [0.87766787]])
+W = W.reshape(1, 3)
+b = np.array([[1.3609792]])
+print(W)
+print(b)
+
+for i in range(25000) :    
+    Z = np.matmul(W, X) + b
+    A = expit(Z)
+    dZ = A - y
+    db = 1/7.0 * np.sum(dZ)
+    dW = 1/7.0 * np.matmul(X, dZ.T)
+    W -= 0.05*dW.T
+    b -= 0.05*db
+    
+mse = 1/7.0 * np.sum((A-y)**2)
+print(A)
+print(mse)
+
+y_topred = np.array([1, 0, 0])
+y_pred = expit(np.matmul(W, y_topred) + b)
+print(y_pred)
+
+single_pt = np.array([0,1,0])
+result = expit(np.matmul(W, single_pt) + b)
+print(result)
